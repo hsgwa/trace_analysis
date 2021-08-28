@@ -7,6 +7,17 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
+add_subdirectory(pybind11)
+pybind11_add_module(cmake_example src/main.cpp)
+install(
+  TARGETS cmake_example
+  EXPORT export_cmake_example
+  LIBRARY DESTINATION lib/python3.8/site-packages
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
